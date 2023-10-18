@@ -20,6 +20,40 @@ $(function() {
         }
     });
     
+    //撃沈
+    $('.ko').on('click', function() {
+        var prev = $(this).prev().prev();
+        prev.val(0);
+        prev.trigger('input');
+    });
+    
+    //自艦隊読み込み
+    $('#import').on('input', function() {
+        var text = $(this).val();
+        try {
+            var json = JSON.parse(text);
+            j_length = Object.keys(json['f1']).length;
+            console.log('nyo～');
+            json = json['f1'];
+            for(let i = 0;i < j_length;i++) {
+                var hp = json['s' + (i + 1)]['hp'];
+                console.log(hp);
+                $('.ware-max-hp').eq(i).val(hp);
+                let e = new Event('input');
+                document.getElementsByClassName('ware-max-hp')[i].dispatchEvent(e);
+                $('.ware-start-hp').eq(i).val(hp);
+                e = new Event('input');
+                document.getElementsByClassName('ware-start-hp')[i].dispatchEvent(e);
+                $('.ware-end-hp').eq(i).val(hp);
+                e = new Event('input');
+                document.getElementsByClassName('ware-end-hp')[i].dispatchEvent(e);
+            }
+        } catch {
+            alert('入力値不正');
+        }
+        $(this).val('');
+    });
+    
     //敵プリセット適用
     $('#hp3').on('change', function() {
         var elem = $(this).val();
@@ -28,9 +62,13 @@ $(function() {
             $('.teki-start-hp').eq(i).val(hps[i]);
             let e = new Event('input');
             document.getElementsByClassName('teki-start-hp')[i].dispatchEvent(e);
+            $('.teki-end-hp').eq(i).val(hps[i]);
+            e = new Event('input');
+            document.getElementsByClassName('teki-end-hp')[i].dispatchEvent(e);
         }
     });
     
+    //累計表示
     $('input').on('input', function() {
         var ws_total = sumHp('.ware-start-hp');
         var we_total = sumHp('.ware-end-hp');
@@ -88,7 +126,15 @@ $(function() {
         var teki_hp_end = Number($('#teki-total-hp-end').text());
         if(ware_hp_end > 0 && ware_hp_start > 0 && teki_hp_end > 0 && teki_hp_start > 0) {
             var rate = ((teki_hp_start - teki_hp_end) / teki_hp_start) / ((ware_hp_start - ware_hp_end) / ware_hp_start);
-            $('#result').text(rate);
+            var text = '';
+            if(rate === Infinity) {
+                text = '確定B';
+            } else if(isNaN(rate)) {
+                text = '計算待機';
+            } else {
+                text = rate;
+            }
+            $('#result').text(text);
         }
     });
     //データ保存
@@ -111,6 +157,12 @@ $(function() {
             $('.ware-max-hp').eq(i).val(arr[i]);
             let e = new Event('input');
             document.getElementsByClassName('ware-max-hp')[i].dispatchEvent(e);
+            $('.ware-start-hp').eq(i).val(arr[i]);
+            e = new Event('input');
+            document.getElementsByClassName('ware-start-hp')[i].dispatchEvent(e);
+            $('.ware-end-hp').eq(i).val(arr[i]);
+            e = new Event('input');
+            document.getElementsByClassName('ware-end-hp')[i].dispatchEvent(e);
         }
     }
 });

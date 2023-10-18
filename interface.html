@@ -6,11 +6,12 @@
 <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-    <div style="margin: auto;max-width: 430px;">
+    <div style="margin: auto;max-width: 460px;">
         <div style="display:flex;">
             <div class="box">
                 <div>
-                    <p>自艦隊 閉幕HP/開幕HP/全快HP</p>
+                    <p>自艦隊 読込<span><input type="text" id="import"></span></p>
+                    <p>閉幕HP/開幕HP/全快HP</p>
                     <p>
                         1.<input type="number" min="0" value="0" class="ware-end-hp"> / 
                         <input type="number" min="0" value="0" class="ware-start-hp parent-hp"> / 
@@ -58,29 +59,36 @@
                             <option value="90_76_76_150_37_37">他</option>
                         </select>
                     </p>
+                    <p>閉幕HP/開幕HP</p>
                     <p>
                         1.<input type="number" min="0" value="0" class="teki-end-hp"> / 
                         <input type="number" min="0" value="0" class="teki-start-hp  parent-hp">
+                        <button class="ko">ko</button>
                     </p>
                     <p>
                         2.<input type="number" min="0" value="0" class="teki-end-hp"> / 
                         <input type="number" min="0" value="0" class="teki-start-hp  parent-hp">
+                        <button class="ko">ko</button>
                     </p>
                     <p>
                         3.<input type="number" min="0" value="0" class="teki-end-hp"> / 
                         <input type="number" min="0" value="0" class="teki-start-hp  parent-hp">
+                        <button class="ko">ko</button>
                     </p>
                     <p>
                         4.<input type="number" min="0" value="0" class="teki-end-hp"> / 
                         <input type="number" min="0" value="0" class="teki-start-hp  parent-hp">
+                        <button class="ko">ko</button>
                     </p>
                     <p>
                         5.<input type="number" min="0" value="0" class="teki-end-hp"> / 
                         <input type="number" min="0" value="0" class="teki-start-hp  parent-hp">
+                        <button class="ko">ko</button>
                     </p>
                     <p>
                         6.<input type="number" min="0" value="0" class="teki-end-hp"> / 
                         <input type="number" min="0" value="0" class="teki-start-hp  parent-hp">
+                        <button class="ko">ko</button>
                     </p>
                     <p><span>開幕時総HP: </span><span id="teki-total-hp-start" class="total-hp">0</span></p>
                     <p><span>閉幕時総HP: </span><span id="teki-total-hp-end" class="total-hp">0</span></p>
@@ -88,22 +96,25 @@
             </div>
         </div>
         <div>
-            <p style="text-align: center"><span>ゲージ比</span><span id="result"></span></p>
+            <p style="text-align: center"><span>ゲージ比:</span><span id="result"></span></p>
         </div>
         <p>補足</p>
+        <p>B勝利が際どいときに判定するツールです</p>
+        <p>基本的に6-3を想定していますが数値をマニュアルで打てばどこでも使えます</p>
         <p>セレクトボックスで敵艦隊(5パターン)の識別を行います。上からチェックしていけば見分けられるはず</p>
         <p>ゲージ比 > 2.5 でB勝利です</p>
+        <p>自艦隊は読込からデッキビルダー形式貼り付けで反映できます</p>
         <div>
             <details style="list-style: none">
                 <summary>アプデ履歴</summary>
+                <li>23/10/18_ver.1.02  デッキビルダー読込、撃沈ボタン実装</li>
                 <li>23/10/11_ver.1.01  総計のみ入力だったのを各艦入力へ変更</li>
             </details>
         </div>
         <div>
             <details style="list-style: none">
                 <summary>所感</summary>
-                <li>自分で触ってて思うのは此方2隻やられて敵3隻以上生存してる時点でほぼほぼ夜戦確定ということですね。そこから更に微妙なラインで使えるかなあと</li>
-                <li>割と満足してますが撃沈/全快切り替えとかは付けるかも</li>
+                <li>自分で触ってて思うのは此方2隻やられて敵3隻以上生存してる時点でほぼほぼ夜戦確定ということですね。累計Hpの差がキツい</li>
             </details>
         </div>
     </div>
