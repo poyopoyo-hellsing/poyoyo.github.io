@@ -1,6 +1,6 @@
 $(function() {
     //制空シミュに貼るの
-    const code = 'copy(JSON.stringify({composition: document.querySelector(\'.mt-0.pt-0.v-input input\').value,\nspeed: document.querySelector(\'.mr-2.body-2\').textContent,\nsearch:Array.from(document.querySelectorAll(\'.ml-2.body-2\')).map(e => e.textContent),\nfleet: Array.from(document.querySelectorAll(\'.d-flex.pl-1.clickable-status > div:first-child\')).map(e => e.textContent),}));';
+    const code = 'copy(JSON.stringify({\ncomposition: document.querySelector(\'.mt-0.pt-0.v-input input\').value,\nspeed: document.querySelector(\'.mr-2.body-2\').textContent,\nsearch: Array.from(document.querySelectorAll(\'.ml-2.body-2\')).slice(0, 4).map(e => e.textContent),\nfleet: Array.from(document.querySelectorAll(\'.d-flex.pl-1.clickable-status > div:first-child\')).map(e => e.textContent),}));';
     //艦隊諸元
     var com = {
         BB:0, //戦艦
@@ -5891,7 +5891,7 @@ $(function() {
             layout:layout,
             autoungrabify: true, //nodeのドラッグ不可
             maxZoom: 2.0,
-            minZoom: 0.6
+            minZoom: 1.2
         });
     }
     //読み込み時にlocalstorageから諸々の設定を読込、反映
